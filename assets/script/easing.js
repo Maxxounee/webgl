@@ -1,110 +1,147 @@
 /* eslint-disable */
-const sine = {
-	in(value) {
-		return 1 - Math.cos((value * Math.PI) / 2);
-	},
-	out(value) {
-		return Math.sin((value * Math.PI) / 2);
-	},
-	inOut(value) {
-		return -(Math.cos(value * Math.PI) - 1) / 2;
-	},
+const _dict = {
+	'in': 'easeIn',
+	'out': 'easeInOut',
+	'inOut': 'easeInOut',
 };
-const quad = {
-	in(value) {
-		return Math.pow(value, 2);
-	},
-	out(value) {
-		return 1 - Math.pow((1 - value) * (1 - value), 2);
-	},
-	inOut(value) {
-		return value < 0.5 ? 2 * Math.pow(value, 2) : 1 - Math.pow(-2 * value + 2, 2) / 2;
-	},
-};
-const cubic = {
-	in(value) {
-		return Math.pow(value, 3);
-	},
-	out(value) {
-		return 1 - Math.pow(1 - value, 3);
-	},
-	inOut(value) {
-		return value < 0.5 ? 4 * Math.pow(value, 3) : 1 - Math.pow(-2 * value + 2, 3) / 2;
-	},
-};
-const quart = {
-	in(value) {
-		return Math.pow(value, 4);
-	},
-	out(value) {
-		return 1 - Math.pow(1 - value, 4);
-	},
-	inOut(value) {
-		return value < 0.5 ? 8 * Math.pow(value, 4) : 1 - Math.pow(-2 * value + 2, 4) / 2;
-	},
-};
-const quint = {
-	in(value) {
-		return Math.pow(value, 5);
-	},
-	out(value) {
-		return 1 - Math.pow(1 - value, 5);
-	},
-	inOut(value) {
-		return value < 0.5 ? 16 * Math.pow(value, 5) : 1 - Math.pow(-2 * value + 2, 5) / 2;
-	},
-};
-const expo = {
-	in(value) {
-		return value === 0 ? 0 : Math.pow(2, 10 * value - 10);
-	},
-	out(value) {
-		return value === 1 ? 1 : 1 - Math.pow(2, -10 * value);
-	},
-	inOut(value) {
-		return value === 0
-			? 0
-			: value === 1
-				? 1
-				: value < 0.5 ? Math.pow(2, 20 * value - 10) / 2
-					: (2 - Math.pow(2, -20 * value + 10)) / 2;
-	},
-};
-const circ = {
-	in(value) {
-		return 1 - Math.sqrt(1 - Math.pow(value, 2));
-	},
-	out(value) {
-		return Math.sqrt(1 - Math.pow(value - 1, 2));
-	},
-	inOut(value) {
-		return value < 0.5
-			? (1 - Math.sqrt(1 - Math.pow(2 * value, 2))) / 2
-			: (Math.sqrt(1 - Math.pow(-2 * value + 2, 2)) + 1) / 2;
-	},
-};
-const back = {
-	in(value) {
-		const c1 = 1.70158;
-		const c3 = c1 + 1;
 
-		return c3 * Math.pow(value, 3) - c1 * Math.pow(value, 2);
-	},
-	out(value) {
-		const c1 = 1.70158;
-		const c3 = c1 + 1;
+function sine(type) {
+	const ease = {
+		easeIn(value) {
+			return 1 - Math.cos((value * Math.PI) / 2);
+		},
+		easeOut(value) {
+			return Math.sin((value * Math.PI) / 2);
+		},
+		easeInOut(value) {
+			return -(Math.cos(value * Math.PI) - 1) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
 
-		return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
-	},
-	inOut(value) {
-		const c1 = 1.70158;
-		const c2 = c1 * 1.525;
+function quad(type) {
+	const ease = {
+		in(value) {
+			return Math.pow(value, 2);
+		},
+		out(value) {
+			return 1 - Math.pow((1 - value) * (1 - value), 2);
+		},
+		inOut(value) {
+			return value < 0.5 ? 2 * Math.pow(value, 2) : 1 - Math.pow(-2 * value + 2, 2) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
 
-		return value < 0.5
-			? (Math.pow(2 * value, 2) * ((c2 + 1) * 2 * value - c2)) / 2
-			: (Math.pow(2 * value - 2, 2) * ((c2 + 1) * (value * 2 - 2) + c2) + 2) / 2;
-	},
-};
+function cubic(type) {
+	const ease = {
+		in(value) {
+			return Math.pow(value, 3);
+		},
+		out(value) {
+			return 1 - Math.pow(1 - value, 3);
+		},
+		inOut(value) {
+			return value < 0.5 ? 4 * Math.pow(value, 3) : 1 - Math.pow(-2 * value + 2, 3) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
+
+function quart(type) {
+	const ease = {
+		in(value) {
+			return Math.pow(value, 4);
+		},
+		out(value) {
+			return 1 - Math.pow(1 - value, 4);
+		},
+		inOut(value) {
+			return value < 0.5 ? 8 * Math.pow(value, 4) : 1 - Math.pow(-2 * value + 2, 4) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
+
+function quint(type) {
+	const ease = {
+		in(value) {
+			return Math.pow(value, 5);
+		},
+		out(value) {
+			return 1 - Math.pow(1 - value, 5);
+		},
+		inOut(value) {
+			return value < 0.5 ? 16 * Math.pow(value, 5) : 1 - Math.pow(-2 * value + 2, 5) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
+
+function expo(type) {
+	const ease = {
+		in(value) {
+			return value === 0 ? 0 : Math.pow(2, 10 * value - 10);
+		},
+		out(value) {
+			return value === 1 ? 1 : 1 - Math.pow(2, -10 * value);
+		},
+		inOut(value) {
+			return value === 0
+				? 0
+				: value === 1
+					? 1
+					: value < 0.5 ? Math.pow(2, 20 * value - 10) / 2
+						: (2 - Math.pow(2, -20 * value + 10)) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
+
+function circ(type) {
+	const ease = {
+		in(value) {
+			return 1 - Math.sqrt(1 - Math.pow(value, 2));
+		},
+		out(value) {
+			return Math.sqrt(1 - Math.pow(value - 1, 2));
+		},
+		inOut(value) {
+			return value < 0.5
+				? (1 - Math.sqrt(1 - Math.pow(2 * value, 2))) / 2
+				: (Math.sqrt(1 - Math.pow(-2 * value + 2, 2)) + 1) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
+
+function back(type) {
+	const ease = {
+		in(value) {
+			const c1 = 1.70158;
+			const c3 = c1 + 1;
+
+			return c3 * Math.pow(value, 3) - c1 * Math.pow(value, 2);
+		},
+		out(value) {
+			const c1 = 1.70158;
+			const c3 = c1 + 1;
+
+			return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
+		},
+		inOut(value) {
+			const c1 = 1.70158;
+			const c2 = c1 * 1.525;
+
+			return value < 0.5
+				? (Math.pow(2 * value, 2) * ((c2 + 1) * 2 * value - c2)) / 2
+				: (Math.pow(2 * value - 2, 2) * ((c2 + 1) * (value * 2 - 2) + c2) + 2) / 2;
+		},
+	};
+	return ease[_dict[type] ?? 'easeInOut'];
+}
 
 const stringBezier = {
 	inSine: 'cubic-bezier(0.12, 0, 0.39, 0)',

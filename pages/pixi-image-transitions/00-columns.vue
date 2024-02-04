@@ -1,6 +1,7 @@
 <template>
 	<div class="pixi-image-transitions">
 		<div class="nav">
+			<!-- https://www.youtube.com/watch?v=Q1uNf54jjgU&t=1615s -->
 			<div class="section n0"></div>
 			<div class="section n1"></div>
 			<div class="section n2"></div>
@@ -83,7 +84,7 @@ export default {
 								end: index,
 								duration: 500,
 								key: 'uProgress',
-								easing: easing.sine.inOut,
+								easing: easing.sine('in'),
 								onUpdate(value) {
 									console.log(value);
 								},
