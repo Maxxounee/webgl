@@ -38,6 +38,7 @@ export default {
 				this.displacementSprite.x = centerX;
 				this.displacementSprite.y = centerY;
 				container.filters = [this.displacementFilter];
+				/* scale у фильтра === сила фильтра */
 				this.displacementFilter.scale.y = 0;
 				app.stage.addChild(this.displacementSprite);
 

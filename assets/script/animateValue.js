@@ -82,7 +82,7 @@ export default function main(target, options) {
 	}
 	const opt = {
 		key: null,
-		start: null,
+		start: 'current',
 		end: null,
 		range: null,
 		duration: 1000,
@@ -95,7 +95,9 @@ export default function main(target, options) {
 		},
 		...options,
 	};
-	opt.start = options.start === 'current' ? target[opt.key] : options.start;
+	/* TODO: animated keys */
+	// const keys = {};
+	opt.start = (options.start === undefined || options.start === 'current') ? target[opt.key] : options.start;
 
 	opt.range = options.end - opt.start;
 

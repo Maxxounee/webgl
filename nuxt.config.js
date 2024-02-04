@@ -14,6 +14,7 @@ export default {
 	components: true,
 	buildModules: [
 		'@nuxtjs/eslint-module',
+		'nuxt-animejs',
 	],
 	css: [
 		'@/assets/style/default.scss',
