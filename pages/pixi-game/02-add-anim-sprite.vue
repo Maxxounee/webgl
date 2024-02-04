@@ -22,14 +22,16 @@ export default {
 
 			const loader = new PIXI.loaders.Loader();
 
-			/** JSON map */
+			/** JSON map
+			 * https://www.codeandweb.com/
+			 * */
 			loader
 				.add('tile', '/assets/images/tiles/walking/right.json')
 				.load(setup);
 
 			function setup(loader, resources) {
 				const textures = [];
-				for (let i = 1; i < 10; i++) {
+				for (let i = 0; i < 10; i++) {
 					const texture = PIXI.Texture.from(`${i}.png`);
 					textures.push(texture);
 				}
